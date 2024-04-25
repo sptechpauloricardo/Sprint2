@@ -1,0 +1,193 @@
+ <!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSHTEMP</title>
+</head>
+
+<body>
+    Insira seu nome:
+    <input type="text" id="input_nome">
+
+    <br>
+    <br>
+
+    Por quanto e a sua venda de Shimeji a cada 200g:
+    <input type="text" id="input_venda">
+
+    <br>
+    <br>
+
+    Quanto foi produzindo durante o ciclo:
+    <select name="" id="select_peso">
+        <option value="" selected disabled>Selecione a opção desejada</option>
+        <option value="grama">Grama</option>
+        <option value="kilo">Kilo</option>
+        <option value="tonelada">Tonelada</option>
+    </select>
+
+
+    <input type="text" id="input_ciclo">
+
+    <!-- Branco - 100dias
+        Preto - 120dias
+        Normal - 110dias  -->
+
+    <!-- Quantos Foi Produzido(Kg)? -->
+    <!-- <input type="text" id="input_produ"> -->
+
+    <br>
+    <br>
+
+    <select name="" id="select_shimeji">
+        <option value="" selected disabled>Selecione a opção desejada</option>
+        <option value="select_shn">Shimeji Normal</option>
+        <option value="select_shb">Shimeji Branco</option>
+        <option value="select_shp">Shimeji Preto</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button onclick="calcular()">Calcular quanto foi produzido</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var nome = input_nome.value;
+
+        var prod = Number(input_ciclo.value);
+        var peso = select_peso.value;
+        var cogu = prod * 30 / 100;
+        var transkg = select_peso.value;
+
+        var venda = Number(input_venda.value);
+
+        div_msg.innerHTML = ``;
+
+        // var Producao = Number(input_producao.value);
+
+        var shimeji = select_shimeji.value;
+
+        if (transkg == 'grama') {
+            prod = prod / 1000;
+            var vendakg = venda * prod;
+            if (shimeji == 'select_shn') {
+                var kgN = venda * prod;
+
+                var perdaN = kgN * 30 / 100;
+                var perdaA = kgN * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaN} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shb') {
+                var kgB = venda * prod;
+
+                var perdaB = kgB * 30 / 100;
+                var perdaA = kgB * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaB} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shp') {
+                var kgP = venda * prod;
+
+                var perdaP = kgP * 30 / 100;
+                var perdaA = kgP * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaP} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+            }
+        }
+        else if (transkg == 'tonelada') {
+            prod = prod * 1000;
+
+            if (shimeji == 'select_shn') {
+                var kgN = venda * prod;
+
+                var perdaN = kgN * 30 / 100;
+                var perdaA = kgN * 20 / 100;
+                var salvarA = kgN - (kgN * 20 / 100);
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaN} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shb') {
+                var kgB = venda * prod;
+
+                var perdaB = kgB * 30 / 100;
+                var perdaA = kgB * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaB} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shp') {
+                var kgP = venda * prod;
+                var perdaP = kgP * 30 / 100;
+                var perdaA = kgP * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaP} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+            }
+        }
+        else {
+            if (shimeji == 'select_shn') {
+                var kgN = venda * prod;
+                var perdaN = kgN * 30 / 100;
+                var perdaA = kgN * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaN} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shb') {
+                var kgB = venda * prod;
+                var perdaB = kgB * 30 / 100;
+                var perdaA = kgB * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaB} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            } else if (shimeji == 'select_shp') {
+                var kgP = venda * prod;
+                var perdaP = kgP * 30 / 100;
+                var perdaA = kgP * 20 / 100;
+
+                div_msg.innerHTML += `Olá ${nome}, obrigado por consultar <b> MushTemp </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP} reais nesse ciclo<br> <br>
+            Com uma produção de ${prod} kilos <br><br>
+            Percebemos que sua perda foi de R$${perdaP} cerca de 30% <br><br>
+            Com base no ultimo ciclo, poderíamos salvar: R$${perdaA}<br><br>`;
+
+            }
+        }
+    }
+</script>
