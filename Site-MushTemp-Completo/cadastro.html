@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cadastro - MushTemp </title>
+    <link rel="stylesheet" href="./style/dashboard.css">
+    <link rel="stylesheet" href="./style/style-site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<header>
+<nav class="navbar">
+    <div class="navbar-item-1">
+        <div class="logo-nav">
+            <img style="margin-top: 5px;" id="img-logo" src="./img/logo/logo-lado.png" alt="">
+        </div>
+    </div>
+    <div class="navbar-item-2">
+        <a href="#sessao1" class="nav-link">Inicio</a>
+        <a href="#sessao2" class="nav-link">Quem Somos</a>
+        <a href="#sessao3" class="nav-link">Projeto</a>
+        <a href="#sessao4" class="nav-link">Equipe</a>
+        <a href="cadastro.html" class="nav-link">Login | Cadastro</a>
+    </div>
+</nav>
+</header>
+
+<body>
+    
+    <div id="tela">
+
+ <!--------------------------------------CONTAINER------------------------------------------->
+
+        <div class="boxCadastro" id="BOXCadastro">
+            <img class="logo-cadastro" src="img/logo/logo-inteira.png" alt="">
+            <div class="caixa-Input">
+                <div class="texto-Login">
+                    Nome:
+                </div>
+
+                <input class="input" id="inputNome" type="text" placeholder="  Digite seu nome: ">
+                <div class="texto-Login">
+                    CNPJ:
+                </div>
+
+                <input class="input" id="inputCNPJ" type="text" placeholder="  Digite seu cnpj: ">
+                <div class="texto-Login">
+                    Email:
+                </div>
+
+                <input class="input" id="inputEmail" type="text" placeholder="  Digite sua email: ">
+                <div class="texto-Login">
+                    Senha:
+                </div>
+
+                <input class="input" id="inputSenha" type="password" placeholder="  Digite sua senha:  ">
+                <div class="texto-Login">
+                    Confirme sua senha:
+                </div>
+                <input class="input" id="inputConfirmacaoSenha" type="password" placeholder="  Digite sua senha: ">
+            </div>
+            <button class="btn" onclick="validar()"> CADASTRAR </button>
+        </div>
+
+ <!--------------------------------------LOGIN------------------------------------------->
+
+        <div class="boxLogin" id="BOXLogin" style="display: none;">
+            <img class="logo1" src="img/logo/logo-inteira.png" alt="">
+            <div class="caixa-Input">
+                <div class="texto-Login">
+                    Email:
+                </div>
+                <input class="input" id="inputEmailLogin" type="text" placeholder="  Digite seu email: ">
+                <div class="texto-Login">
+                    Senha:
+                </div>
+                <input class="input" id="inputSenhaLogin" type="password" placeholder="  Digite sua senha: ">
+            </div>
+            <button class="btn" onclick="logar()"> LOGIN </button>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+    /*--------- VAR GLOBAL ------------*/
+    var emailGLOBAL = 0;
+    var senhaGLOBAL = 0;
+
+    /*------- FUNÇÃO CADASTRO ---------*/
+    function validar() {
+        var email = inputEmail.value;
+        var senha = inputSenha.value;
+        var nome = inputNome.value;
+        var cnpj = inputCNPJ.value;
+        var confirma = inputConfirmacaoSenha.value;
+        emailGLOBAL = email;
+        senhaGLOBAL = senha;
+
+        if (nome.lenght == 0) {
+            alert('Nome precisa ter mais que 1 caracter');
+        }
+        else if (cnpj.lenght < 14 || cnpj.lenght > 14 ) {
+            alert('O cnpj precisa conter 14 digitos');
+        }
+        else if (email.indexOf("@") === -1) {
+            alert('O email precisa conter @');
+        }
+        else if (senha.lenght <= 6) {
+            alert('A senha precisa conter no minímo')
+        }
+
+        else if (confirma != senha) {
+            alert('A confirmação não esta igual a senha.')
+        }
+        else {
+            BOXCadastro.style.display = "none";
+            BOXLogin.style.display = "flex";
+ 
+        }
+
+ /*------- FUNÇÃO LOGIN ---------*/
+    }
+    function logar() {
+        var senhaLogin = inputSenhaLogin.value;
+        var emailLogin = inputEmailLogin.value;
+
+        if (emailLogin != emailGLOBAL) {
+            alert('Email incorreta!');
+
+
+        }
+
+        if (senhaLogin != senhaGLOBAL) {
+            alert('Senha incorreta!');
+
+
+        }
+        else {
+            window.location.href = 'estufa1.html'
+        }
+    }
+</script>
