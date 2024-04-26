@@ -73,7 +73,9 @@
                   
                     <img src="./img/icone/alerta.png" class="imgAlerta" alt="">
 
-                    <p id="mensagem_alerta"></p>
+                    <div class="div_mensagem" style="padding: 10px;">
+                        <p id="mensagem_alerta"></p>
+                    </div>
 
                 </div>
 
@@ -195,22 +197,23 @@
             grafico.update();
 
             // endpoint.nomeSensor.push(valor);
-            console.log(nomeSensor)
+            console.log(nomeSensor);
+            const horas = new Date();
 
             if(nomeSensor == "temperatura"){
-                if(valor >= 23 && valor <= 30){
+                if(valor >= 29 && valor <= 30){
 
                 }
                 else{
-                    mensagem_alerta.innerHTML += (`Temperatura: ${valor}<br>`);
+                    mensagem_alerta.innerHTML += (`Temperatura: ${valor} Cº Dia e Mês: ${horas.getDate()}/${horas.getMonth()+1}/${horas.getFullYear()} às ${horas.getHours()} horas<br><br>`);
                 }
                
-            } else {
+            } else if (nomeSensor == "umidade") {
                 if(valor >= 80 && valor <= 90){
                     
                 }
                 else{
-                    mensagem_alerta.innerHTML += (`Umidade: ${valor}<br>`);
+                    mensagem_alerta.innerHTML += (`Umidade: ${valor}% Dia e Mês: ${horas.getDate()}/${horas.getMonth()+1}/${horas.getFullYear()} às ${horas.getHours()} horas<br><br>`);
                 }
                
             }
@@ -230,8 +233,4 @@
         obterDados(dht11Temperatura, 'dht11/temperatura', 'temperatura');
    
     }, 1000);
-
- 
-  
-    
 </script>            

@@ -12,7 +12,7 @@ const SERVIDOR_PORTA = 3300;
 // Habilita ou desabilita a inserção de dados no banco de dados
 // false -> nao insere
 // true -> insere
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 // Função para comunicação serial
 const serial = async (
@@ -86,7 +86,7 @@ const serial = async (
             // altere!
             // Este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO Monitoramento (temperatura, umidade) VALUES (?, ?)',
+                'INSERT INTO Monitoramento (umidade, temperatura) VALUES (?, ?)',
                 [dht11Umidade, dht11Temperatura]
                 /* [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave] */
             );
