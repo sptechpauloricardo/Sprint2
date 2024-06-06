@@ -276,7 +276,7 @@ section {
     justify-content: center;
     align-items: center;
     background: #5B3838;
-    background-image: url(/img/fundo-cogu.png);
+    background-image: url('../img/fundo-cogu.png');
     background-size: cover;
 }
 

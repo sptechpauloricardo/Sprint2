@@ -345,6 +345,7 @@ section {
 
 /* ESTILIZANDO A TERCEIRA SESSÃO - PROJETO */
 
+
 #sessao3 {
     display: flex;
     align-items: end;
@@ -362,6 +363,8 @@ section {
 
 .father-projeto {
     width: 100%;
+    
+    
     height: 85%;
 
     display: flex;
@@ -382,6 +385,8 @@ section {
 }
 
 .projeto-item {
+   
+    scroll-behavior: smooth;
     width: 30%;
     height: 90%;
     padding: 40px;
