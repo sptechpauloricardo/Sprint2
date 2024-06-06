@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -10,7 +11,6 @@ body {
 
 .sidebar {
     width: 200px;
-    height: 1900px;
     background-color: #e0e0e0;
     padding: 20px;
     box-sizing: border-box;
@@ -54,7 +54,6 @@ nav ul li img {
     border: none;
     cursor: pointer;
 }
-
 .main-content {
     flex: 1;
     padding: 20px;
