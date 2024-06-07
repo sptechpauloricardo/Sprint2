@@ -1,0 +1,764 @@
+/* importando a fonte do site */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* PALETA DE COR */
+/*
+#7D5858     #7C574B     #4D372F     #EEBA96     #E06E6E     #FBF6F6     #DCDCD0
+*/
+
+/* Tirando o padrão de estilização do navegador */
+
+*,
+*:after,
+*:before {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
+    color: #5A5A5A;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    background: #DCDCD0;
+    overflow-x: hidden;
+}
+
+/* ESTILIZANDO A NAVBAR */
+
+header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+
+    position: fixed;
+
+    background: rgba(255, 255, 255, 0.404);
+    backdrop-filter: blur(19.5px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.navbar-item-1 {
+    width: 40%;
+}
+
+.navbar-item-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.navbar-item-2 a {
+    font-size: 110%;
+}
+
+.navbar-item-2 a:hover {
+    color: #7C574B;
+    border-bottom: 2px solid #7C574B;
+}
+
+.nav-link {
+    text-decoration: none;
+    margin-left: 16px;
+    display: inline-block;
+    padding: 12px 16px;
+}
+
+#img-logo {
+    width: 160px;
+}
+
+/* DANDO TAMANHO PADRÃO PARA AS SESSOES*/
+
+section {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* login */
+.container {
+    background-color: #F5EBEB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.boxLogin {
+    width: 30vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    padding: auto;
+
+}
+
+.texto-Login {
+    width: 100%;
+    height: auto;
+
+    text-align: left;
+
+}
+
+/* Fim login */
+/* Login e cadastro */
+.input {
+    width: 22vw;
+    height: 5vh;
+    background-color: #D9D9D9;
+    border: none;
+    margin-bottom: 15px;
+    
+
+}
+
+.caixa-Input {
+
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.btn {
+    width: 11vw;
+    height: 5.5vh;
+    border-radius: 10px;
+    background-color: #998579cb;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1.5vh;
+}
+
+:hover.btn {
+    width: 11vw;
+    height: 5.5vh;
+    border-radius: 10px;
+    background-color: #998579;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1.5vh;
+    transition: 0.5s;
+}
+
+/* Fim Login e cadastro */
+/* Cadastro */
+.boxCadastro {
+    width: 30vw;
+    height: 80vh;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+    padding-bottom: 5px;
+   
+
+
+}
+
+.logo-cadastro {
+    width: 130px;
+    height: 100px;
+    margin-top: 20px;
+    bottom: 80;
+
+}
+
+.logo1 {
+    width: 140px;
+    height: 120px;
+
+}
+
+.btn-cadastro{
+    width: 150px;
+    height: 40px;
+    background-color: #d9d9d985;
+    border-radius: 10px;
+  
+    color: black;
+    border: none;
+    font-size: 90%;
+    opacity: 900%;
+}
+
+:hover.btn-cadastro {
+    width: 150px;
+    height: 40px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+  
+    color: black;
+    border: none;
+    font-size: 90%;
+    opacity: 900%;
+    transition: 0.5s;
+}
+
+/*fim cadastro*/
+
+.input {
+    width: 22vw;
+    height: 5vh;
+    background-color: #D9D9D9;
+    border: none;
+    margin-bottom: 15px;
+    
+
+}
+
+.caixa-Input {
+
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.btn {
+    width: 11vw;
+    height: 5.5vh;
+    border-radius: 10px;
+    background-color: #998579cb;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1.5vh;
+}
+
+:hover.btn {
+    width: 11vw;
+    height: 5.5vh;
+    border-radius: 10px;
+    background-color: #998579;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1.5vh;
+    transition: 0.5s;
+}
+
+/* ESTILIZANDO A PRIMEIRA SESSAO - HOME */
+
+#sessao1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #5B3838;
+    background-image: url(/img/fundo-cogu.png);
+    background-size: cover;
+}
+
+.circle_logo {
+    width: 400px;
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FBF6F6;
+    border-radius: 50%;
+}
+
+#img-logo-inteira {
+    width: 250px;
+}
+
+/* ESTILIZANDO A SEGUNDA SESSÃO - QUEM SOMOS? */
+
+#sessao2 {
+    background: #DCDCD0;
+    display: flex;
+    align-items: end;
+}
+
+.father {
+    width: 100%;
+    height: 92%;
+}
+
+.child-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 35px;
+}
+
+.child-informacoes {
+    width: 100%;
+    height: 70%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.informacoes {
+    width: 40%;
+    height: 500px;
+}
+
+#inf-img {
+    display: flex;
+    justify-content: center;
+}
+
+#inf-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* ESTILIZANDO A TERCEIRA SESSÃO - PROJETO */
+
+#sessao3 {
+    display: flex;
+    align-items: end;
+}
+
+.titulo-projeto {
+    width: 100%;
+    height: 10%;
+    margin-top: 25px;
+    margin-left: 10%;
+
+    display: flex;
+    align-items: center;
+}
+
+.father-projeto {
+    width: 100%;
+    height: 85%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: #DCDCD0;
+}
+
+.child-projeto {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projeto-item {
+    width: 30%;
+    height: 90%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.493);;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+   
+}
+
+.img-projeto {
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dcdcd0a3;
+}
+.img-projeto1{
+    width: 100px;
+    height: 100px;
+}
+
+.clild-btn {
+    width: 80%;
+    height: 8%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-organizador {
+    max-width: 700px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.btn-projeto {
+    background-color: #7c574be0;
+    border: 3px solid #7C574B;
+    border-radius: 14px;
+    text-decoration: none;
+    cursor: pointer;
+
+    color: #dcdcd0;
+    width: 45%;
+    height: 50px;
+}
+
+:hover.btn-projeto {
+    transition: 0.5s ease;
+    color: #dcdcd0;
+    background-color: #7c574b;
+}
+
+/* ESTILIZANDO A QUARTA TELA - EQUIPE */
+
+#sessao4 {
+    display: flex;
+    align-items: end;
+}
+
+.titulo-equipe {
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.father-equipe {
+    width: 100%;
+    height: 85%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.child-equipe {
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.equipe-item {
+    width: 90%;
+    height: 45%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.equipe-item-pessoa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 300px;
+    height: 300px;
+}
+
+.img-pessoa {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 5px solid #E06E6E;
+
+}
+
+.equipe-social {
+    width: 40%;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.equipe-icone {
+    width: 30px;
+    background-size: cover;
+   
+}
+
+/* ESTILIZANDO A QUINTA TELA - FALE CONOSCO */
+
+#sessao5 {
+    display: flex;
+    align-items: end;
+}
+
+#father-contato {
+    display: flex;
+    justify-content: space-around;
+}
+
+.child {
+    width: 45%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.child-informacao-contato {
+    width: 60%;
+    height: 60%;
+}
+
+.logo-contato {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.organiza-informacoes-contato {
+    width: 100%;
+    height: 54%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.icone-contato {
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.icone-item {
+    width: 25px;
+    margin-right: 16px;
+}
+
+/* ESTILIZAÇÃO DO FORMULARIO */
+
+.child-informacao-card {
+    width: 60%;
+    height: 80%;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.493);
+
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.card-titulo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-formulario-contato {
+    width: 100%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input-contato {
+    width: 100%;
+    height: 60%;
+    font-size: 15px;
+
+    border: none;
+    background-color: #d9d9d9;
+
+    padding-left: 15px;
+}
+
+.textarea-contato {
+
+    font-size: 16px;
+    background-color: #d9d9d9;
+    border: none;
+    padding-left: 15px;
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    margin-bottom: 15%;
+    
+ 
+
+    resize: none;
+    /* Impede que o usuário redimensione a caixa de texto */
+}
+
+.textarea-contato:focus {
+    outline: none;
+}
+
+.btn-contato {
+    background-color: #7c574be0;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.9 ease;
+
+    color: #ffffff;
+    width: 100%;
+    height: 50px;
+}
+
+:hover.btn-contato {
+    transition: 0.5s;
+    color: #dcdcd0;
+    background-color:#7c574b;
+}
+
+/* ESTILIZAÇÃO DO FOOTER - MUSHTEMP */
+
+.father-footer {
+    width: 100%;
+    height: 350px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+
+    background: #5B3838;
+}
+
+.child-footer {
+    width: 500px;
+    height: 100%;
+}
+
+.father-footer h1 {
+    color: #DCDCD0;
+}
+
+.footer-titulo-link {
+    width: 100%;
+    padding-top: 25px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.footer-link {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footer-link-1 {
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footer-link-1 a {
+    color: #dcdcd0;
+}
+
+.footer-item {
+    height: 70%;
+    background: #E06E6E;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    width: 500px;
+}
+
+.footer-rede-social {
+    width: 500px;
+    height: 100%;
+}
+
+.organizador-footer {
+    width: 100%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-social-link {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-contato {
+    width: 100%;
+    display: flex;
+    margin-left: 150px;
+}
+
+.footer-contato b {
+    color: #DCDCD0;
+}
+
+.img-logo-footer {
+    width: 280px;
+}
