@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MushTemp - Simulador</title>
+
+    <!-- link do css -->
+    <link rel="stylesheet" href="./css/style-simulador.css">
+</head>
+<body>
+
+    <!-- NavBar -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-item-1">
+                <div class="logo-nav">
+                    <img style="margin-top: 5px;" id="img-logo" src="./assets/img/logo/logo-lado.png" alt="">
+                </div>
+            </div>
+            <div class="navbar-item-2">
+                <a href="index.html#sessao1" class="nav-link">Início</a>
+                <a href="index.html#sessao2" class="nav-link">Quem Somos</a>
+                <a href="index.html#sessao3" class="nav-link">Projeto</a>
+                <a href="index.html#sessao4" class="nav-link">Equipe</a>
+                <a href="simulador-financeiro.html" class="nav-link">Simulador</a>
+                <a href="cadastro.html" class="nav-link">Login | Cadastro</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Father da Tela de Bem vindo do Simulador -->
+
+    <div class="father" id="bemVindo">
+        <div class="child-left">
+            <img src="./assets/img/svg/svg-simulador.svg" class="img-left-child" alt="animate-image">
+        </div>
+        <div class="child-right">
+
+            <h1 class="titulo">Simulador Financeiro MushTemp</h1>
+            <p>
+                Descubra o potencial econômico dos nossos sensores de temperatura e umidade para suas estufas de cogumelos shimeji. 
+                Este simulador mostrará como nossas soluções podem reduzir custos e maximizar lucros. Vamos começar a transformar sua 
+                produção agora!
+            </p>
+
+            <button onclick="comecar()" class="btn-child-right"> Começar </button>
+    
+        </div>
+    </div>
+
+    <!-- Father da tela de calculo do simulador -->
+
+    <div class="father" id="calculo" style="display: none;">
+
+        <div class="child-left-informacao">
+
+            <h1 class="titulo start"> Simulador Financeiro </h1>
+            <h2 class="sub-titulo start">Informações Requeridas</h2>
+            
+            <p class="texto">
+                Para personalizar sua experiência, solicitamos que forneça seu nome. Em seguida, selecione o tipo de cogumelo shimeji que você cultiva: 
+                Shimeji Normal, Shimeji Preto ou Shimeji Branco. Informe-nos o preço de venda de 200 gramas do cogumelo escolhido e a quantidade produzida por ciclo. 
+                (Um ciclo tem a duração de 3 meses). Além disso, selecione a unidade de medida preferida: toneladas, quilos ou gramas.  
+            </p>
+
+            <h2 class="sub-titulo start">Como funciona?</h2>
+
+            <p class="texto">
+                O simulador calculará a produção total por ciclo ao longo de 3 meses e conduzirá uma análise financeira abrangente. 
+                Isso envolve determinar o valor da produção por ciclo, estimar a produção anual e calcular a perda por ciclo, considerando 
+                uma taxa padrão de perda de 30%. Esta taxa é baseada em perdas observadas entre fazendeiros de cogumelos shimeji que não monitoram a temperatura e 
+                umidade adequadamente. Em seguida, o simulador comparará os resultados obtidos com e sem o uso dos sensores de temperatura Mushtemp.
+            </p>
+
+            <button onclick="voltar()" class="btn-child-right"> Voltar </button>
+
+        </div>
+
+        <div class="child-right-calculo">
+            <div class="card">
+
+                <h1 class="titulo-calcular">Calculadora</h1>
+
+                <div class="formulario-calculadora">
+
+                    <p class="margem-1">Nome:</p>
+                    <input class="input_calculadora margem-2" type="text" id="input_nome" placeholder="Digite seu nome" autocomplete="off">
+
+                    <p class="margem-1"> Selecione o Cogumelo: </p>
+                    <select class="select_cogumelo margem-2" id="select_cogumelo">
+                        <option value="#" selected disabled>Selecione uma opção</option>
+                        <option value="select_shn"> Shimeji Normal </option>
+                        <option value="select_shp"> Shimeji Preto </option>
+                        <option value="select_shb"> Shimeji Branco </option>
+                    </select>
+
+                    <p class="margem-1">Quanto custa 200g Shimeji:</p>
+                    <input class="input_calculadora margem-2" type="text" id="input_valor" placeholder="Digite quanto custa o Shimeji" autocomplete="off">
+
+                    <p class="margem-1">Quanto Produz por ciclo:</p>
+                    <div class="div_peso">
+
+                        <input class="input_calculadora margem-2" type="text" id="input_qtdKG" placeholder="Digite quanto voce Produz por ciclo" autocomplete="off">
+                        <select class="select_peso" id="select_peso">
+                            <option class="teste" value="#" selected disabled>Selecione o peso</option>
+                            <option value="grama">Grama(g)</option>
+                            <option value="kilo">Kilo(Kg)</option>
+                            <option value="tonelada">Tonelada(T)</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <button onclick="calcular()" class="btn-calcular"> Calcular </button>
+ 
+            </div>
+        </div>
+    </div>
+
+    <div class="father" id="resultado" style="display: none;">
+        <div class="child-right-calculo">
+
+            <div class="card">
+
+                <h1 class="titulo-calcular">Resultado</h1>
+
+                <div class="formulario-calculadora">
+
+                    <p class="margem-1">Nome:</p>
+                    <p class="resultado-texto margem-2" id="resultado_Nome"></p>
+
+                    <p class="margem-1" id="resultado_peso_texto">Total de Cogumelo Produzido:</p>
+                    <p class="resultado-texto margem-2" id="resultado_Produzido"></p>
+
+                    <p class="margem-1">Valor Total:</p>
+                    <p class="resultado-texto margem-2" id="resultado_ValorTD"></p>
+
+                    <p class="margem-1">Perda Total:</p>
+                    <p class="resultado-texto margem-2" id="resultado_PerdaTD"></p>
+
+                    <p class="margem-1">Valor que Poderia ser Salvo:</p>
+                    <p class="resultado-texto margem-2" id="resultado_PoderiaSV"></p>
+
+                </div>
+
+                <button onclick="comecar()" class="btn-calcular"> Calcular Novamente </button>
+ 
+            </div>
+
+        </div>
+
+        <div class="child-left-informacao">
+            <h1 class="titulo start"> Simulador Financeiro </h1>
+            <h2 class="sub-titulo start">Quais são os Valores?</h2>
+            
+            <p class="texto" id="div_msg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quaerat nisi ut vero illo quibusdam at, iusto omnis sint quia odio eveniet,
+                 provident doloremque labore facere soluta. Adipisci, quam quas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. In quo veritatis 
+                 nisi earum ex officia eveniet temporibus aliquam consequuntur impedit rem dolore doloremque at illum corporis autem, dolor obcaecati saepe.
+            </p>
+
+            <button onclick="voltar()" class="btn-child-right"> Voltar </button>
+
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+
+    function comecar(){
+        bemVindo.style.display = 'none';
+        calculo.style.display = 'flex';
+        resultado.style.display = 'none'
+
+        // LIMPANDO AS INPUT E SELECT
+        input_nome.value = '';
+        input_qtdKG.value = '';
+        select_peso.value = '#';
+        input_valor.value = '';
+        select_cogumelo.value = '#';
+    }
+
+    function voltar(){
+        bemVindo.style.display = 'flex';
+        calculo.style.display = 'none';
+        resultado.style.display = 'none';
+
+        // LIMPANDO AS INPUT E SELECT
+        input_nome.value = '';
+        input_qtdKG.value = '';
+        select_peso.value = '#';
+        input_valor.value = '';
+        select_cogumelo.value = '#';
+    }
+
+    function calcular(){
+
+        var nome = input_nome.value;
+
+        var prod = Number(input_qtdKG.value);
+        var transkg = select_peso.value;
+
+        var venda = Number(input_valor.value);
+
+        div_msg.innerHTML = ``;
+
+        // var Producao = Number(input_producao.value);
+
+        var shimeji = select_cogumelo.value;
+
+        if(nome.length <= 2 ){
+            alert('Nome tem que ter mais de 2 caracteres');
+
+        } else if (shimeji == '#'){
+            alert('Selecione um tipo de cogumelo');
+
+        } else if (venda <= 0){
+            alert('Coloque o valor do cogumelo maior que 0');
+
+        } else if (prod <= 0){
+            alert('Preencha o campo "Quanto Produz por ciclo" corretamente');
+
+        } else if (transkg == '#'){
+            alert('Selecione uma medida de peso');
+
+        } else if (prod < 200 && transkg == 'grama'){
+            alert('Para calcular é preciso colocar 200 gramas ou mais');
+            
+        } else if (prod < 1 && transkg == 'kilo'){
+            alert('Para calcular é preciso colocar 1 kilo ou mais');
+
+        } else{
+
+            bemVindo.style.display = 'none';
+            calculo.style.display = 'none';
+            resultado.style.display = 'flex';
+
+            if (transkg == 'grama') {
+
+                prod = prod / 1000;
+                var vendakg = venda * prod;
+                
+                if (shimeji == 'select_shn') {
+                    var kgN = venda * prod;
+
+                    var perdaN = kgN * 30 / 100;
+                    var perdaA = kgN * 20 / 100;
+                    var salvarA = perdaN - (perdaN * 20 / 100);
+
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgN.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaN.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaN.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shb') {
+                    var kgB = venda * prod;
+
+                    var perdaB = kgB * 30 / 100;
+                    var perdaA = kgB * 20 / 100;
+                    var salvarA = perdaB - (perdaB * 20 / 100);
+
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgB.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaB.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaB.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shp') {
+                    var kgP = venda * prod;
+
+                    var perdaP = kgP * 30 / 100;
+                    var perdaA = kgP * 20 / 100;
+                    var salvarA = perdaP - (perdaP * 20 / 100);
+                
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgP.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaP.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaP.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+                }
+            }
+            else if (transkg == 'tonelada') {
+                prod = prod * 1000;
+
+                if (shimeji == 'select_shn') {
+                    var kgN = venda * prod;
+
+                    var perdaN = kgN * 30 / 100;
+                    var perdaA = kgN * 20 / 100;
+                    var salvarA = perdaN - (perdaN * 20 / 100);
+                    
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgN.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaN.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    <div>Percebemos que sua perda em média foi dspan R$<p id="color-texto-red">${perdaN.toFixed(2)}</span> cerca de 30% <br><br></div>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shb') {
+                    var kgB = venda * prod;
+
+                    var perdaB = kgB * 30 / 100;
+                    var perdaA = kgB * 20 / 100;
+                    var salvarA = perdaB - (perdaB * 20 / 100);
+                
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgB.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaB.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaB.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shp') {
+                    var kgP = venda * prod;
+                    var perdaP = kgP * 30 / 100;
+                    var perdaA = kgP * 20 / 100;
+                    var salvarA = perdaP - (perdaP * 20 / 100);
+
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgP.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaP.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaP.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+                }
+            }
+            else {
+                if (shimeji == 'select_shn') {
+                    var kgN = venda * prod;
+
+                    var perdaN = kgN * 30 / 100;
+                    var perdaA = kgN * 20 / 100;
+                    var salvarA = perdaN - (perdaN * 20 / 100);
+                    
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgN.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaN.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgN.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaN.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shb') {
+                    var kgB = venda * prod;
+
+                    var perdaB = kgB * 30 / 100;
+                    var perdaA = kgB * 20 / 100;
+                    var salvarA = perdaB - (perdaB * 20 / 100);
+                    
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgB.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaB.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgB.toFixed(2)} reais nesse ciclo<br> <br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaB.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                } else if (shimeji == 'select_shp') {
+                    var kgP = venda * prod;
+
+                    var perdaP = kgP * 30 / 100;
+                    var perdaA = kgP * 20 / 100;
+                    var salvarA = perdaP - (perdaP * 20 / 100);
+
+                    resultado_Nome.innerHTML = `${nome}`;
+                    resultado_ValorTD.innerHTML = `R$${kgP.toFixed(2)}`;
+                    resultado_PerdaTD.innerHTML = `R$${perdaP.toFixed(2)}`;
+                    resultado_Produzido.innerHTML = `${prod}Kg`;
+                    resultado_PoderiaSV.innerHTML = `R$${salvarA.toFixed(2)}`;
+
+                    div_msg.innerHTML += `Olá ${nome}, obrigado(a) por consultar <b> MushTemp </b> <br><br>
+                    Percebemos com base nos dados informados que você faturou aproximadamente R$${kgP.toFixed(2)} reais nesse ciclo<br><br>
+                    Com uma produção de ${prod} kilos <br><br>
+                    Percebemos que sua perda em média foi de R$<span id="color-texto-red">${perdaP.toFixed(2)}</span> cerca de 30% <br><br>
+                    Com base no ultimo ciclo, poderíamos evitar a perda de R$<span id="color-texto-green">${salvarA.toFixed(2)}</span> que é 20% da perda total<br><br>`;
+
+                }
+            }
+        
+        }
+
+        
+    }
+
+</script>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Estufas - Estufa 3</title>
+    <link rel="stylesheet" href="../../css/dashbad.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="teste()">
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo"><img src="../../assets/img/logo/logo-lado.png" alt="Logo"></div>
+            <nav>
+                <ul>
+                    <li><a href="dash1.html"><img src="../../assets/img-dash/sair.png" alt=""> Geral</a></li>
+                    <li><a href="#"><img src="../../assets/img-dash/simbolo-de-informacao.png" alt=""> Info</a></li>
+    
+                </ul>
+            </nav>
+            <button onclick="window.location.href='../dash-mush.html'" class="exit">Sair</button>
+        </div>
+        <div class="main-content">
+            <h1>Estufa 1</h1>
+            <div class="status">
+                <div class="status-item">
+                    <span>temperatura 18º</span>
+                </div>
+                <div class="status-item">
+                    <span>umidade: 50%</span>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="graficoTemp">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="graficoUmd">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        
+        </div>
+        <div class="alert-message"><img src="../../assets/img-dash/alerta.png" alt="">
+            <span>VARIAÇÃO INESPERADA</span>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+var listaTemp = [];
+    var listaUmd = [];
+    var lista = [];
+
+    function teste() {
+
+        for (let i = 0; i <= 200; i++) {
+            setTimeout(function () {
+                var temp = Math.random() * 2 + 23
+                var umid = Math.random() * 9 + 80
+
+
+                // Arredondamento
+                var temperatura = Number(temp.toFixed(0));
+                var umidade = Number(umid.toFixed(0));
+                listaTemp.push(temperatura);
+                listaUmd.push(umidade);
+                lista.push(i);
+                myChart.update()
+                myChart2.update()
+
+                console.log(i, 'Contador', listaTemp[i], 'temperatura', listsUmd[i], 'umidade');
+            }, i * 1000);
+        }
+
+    }
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: lista,
+            datasets: [{
+                label: 'Temperatura',
+                data: listaTemp,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+
+
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 20 // limite de exibição
+                    }
+                }],
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    title: {
+                        label: true
+
+                    }
+                }
+            }
+        }
+    });
+    let ctx2 = document.getElementById('myChart2').getContext('2d');
+    let myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: lista,
+            datasets: [{
+                label: 'Umidade',
+                data: listaUmd,
+                backgroundColor: [
+                    'blue'
+
+
+                ],
+                borderColor: [
+                    'blue'
+
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    title: {
+                        label: true
+
+                    }
+                }
+            }
+        }
+    });
+
+    // function exibir(){
+    //     for(var Contador = 0; Contador <= listaTemp.length; Contador++){
+    //         result.innerHTML += `Temperatura ${listaTemp[Contador]}, Umidade ${listsUmd[Contador]} <br>`
+    //     }
+    // }
+
+</script>
