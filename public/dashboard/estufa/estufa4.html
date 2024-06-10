@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash - MushTemp</title>
+    <link rel="stylesheet" href="../../css/dashgood.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-menu-dash">
+
+            <div class="nav-menu-logo">
+                <img class="logo-menu-dash" src="../../assets/img/logo/logo-cogumelo.png" alt="">
+            </div>
+
+            <div class="menu-link-dash">
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="../dash-mush.html">
+                        <img class="icon-menu-dash" src="../../assets/img/icone/icon-home.svg" alt="">
+                    </a>
+                    <p>Início</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="../../bob.html">
+                        <img class="icon-menu-dash" src="../../assets/img/icone/icon-ia.svg" alt="">
+                    </a>
+                    <p>Bob.IA</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="../info.html">
+                        <img class="icon-menu-dash" src="../../assets/img/icone/icon-info.svg" alt="">
+                    </a>
+                    <p>Info</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="mailto:mushtempcompany@gmail.com">
+                        <img class="icon-menu-dash" src="../../assets/img/icone/adicionar.png" alt="">
+                    </a>
+                    <p>Add Estufa</p>
+                </div>
+
+            </div>
+
+            <div class="exit-link-dash">
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="../dash-mush.html">
+                        <img class="icon-menu-dash" src="../../assets/img/icone/icon-back.svg" alt="">
+                    </a>
+                    <p>Voltar</p>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="father">
+        <div class="estufa">
+            <div class="container">
+                <div class="espacoTitulo">
+                    <h1 style="font-size: 40px;">Estufa 4</h1>
+                    <div class="parametros">
+                        <div class="parametroT" id="TempAtual">
+                            <span>TEMPERATURA</span>
+                        </div>
+                        <div class="parametroU" id="UmidAtual">
+                            <span>UMIDADE</span>
+                        </div>
+                    </div>
+        
+        
+                </div>
+                <div class="graficos">
+                    <div class="graficoT">
+                        <canvas id="GraficosBarras" width="700" height="300"></canvas>
+                    </div>
+                    <div class="graficoU">
+                        <canvas id="GraficosBarras2" width="700" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="alertas">
+                    <div id="alertaT">
+                        <h3>Variação de Temmperatura Inesperada</h3>
+                        <ul id="listaInesperada" class="teste">
+                          
+                        </ul>
+                    </div>
+                    <div id="alertaU">
+                        <h3>Variação de Umidade Inesperada</h3>
+                        <ul id="listaInesperada2" class="teste">
+                          
+                        </ul>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var dadosTemperatura = [];
+    var dadosUmidade = [];
+    var lista = [];
+    var myChart, myChart2;
+    let chartsInitialized = false;
+    let i = 0;
+    var listaInesperadaTemperatura = [];
+    var listaInesperadaUmidade = [];
+    var listaData = [];
+
+    function variacaoTempUmid(){
+        var min = 0;
+        var max = 1;
+        var intervalo = max - min;
+
+        var aleatorio = Math.random();
+
+        varicao =  aleatorio * intervalo + min;
+
+        varicao = Number(varicao.toFixed(1));
+    }
+
+
+    window.onload = function () {
+        fetchGrafico();
+        setInterval(fetchGrafico, 10000); // Refresh every 10 seconds
+    };
+
+    function fetchGrafico() {
+        fetch("/medidas/ultimas", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("Estou no then do grafico!");
+
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    atualizarGrafico(json);
+                });
+            } else {
+                console.log("Houve um erro ao capturar os dados do grafico!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function atualizarGrafico(dados) {
+        // console.log(dados, "dados");
+
+        for (; i < dados.length; i++) {
+            variacaoTempUmid();
+
+
+            dadosTemperatura.push(parseFloat(Number ((dados[i].temperatura - varicao).toFixed(0))));
+            dadosUmidade.push(parseFloat(Number((dados[i].umidade - varicao).toFixed(1))));
+            lista.push(dados[i].data);
+            
+            listaData.push(dados[i].data);
+
+            if (parseFloat(Number ((dados[i].temperatura - varicao).toFixed(0))) < 23 || parseFloat(Number ((dados[i].temperatura - varicao).toFixed(0))) > 30) {
+
+                console.log(dados[i].temperatura, 'DADO TEMPERATURA');
+                // listaInesperadaTemperatura.push(dados[i].temperatura);
+                let li = document.createElement('li');
+                li.textContent = `Variação inesperada: Data: ${listaData[i]} Temperatura: ${Number ((dados[i].temperatura - varicao).toFixed(0))}C°`;
+                document.getElementById('listaInesperada').appendChild(li);
+            }
+
+
+            if (parseFloat(Number ((dados[i].umidade - varicao).toFixed(1))) < 80 || parseFloat(Number ((dados[i].umidade - varicao).toFixed(1))) > 90) {
+
+                // listaInesperadaUmidade.push(dados[i].umidade);
+                let li = document.createElement('li');
+                li.textContent = `Variação inesperada: Data: ${listaData[i]} Umidade: ${Number ((dados[i].umidade - varicao).toFixed(2))}%`;
+                document.getElementById('listaInesperada2').appendChild(li);
+            }
+
+
+
+            // console.log(i, 'Contador')
+
+
+
+
+
+            // Mostrar a temperatura atual no card
+            document.getElementById('TempAtual').innerHTML = `Temperatura Atual: ${dadosTemperatura[dadosTemperatura.length - 1].toFixed(0)} C°`;
+
+            // Mostrar a umidade atual no card
+            document.getElementById('UmidAtual').innerHTML = `Umidade Atual: ${dadosUmidade[dadosUmidade.length - 1].toFixed(0)}%`;
+
+            // Limitar o tamanho dos dados para manter o gráfico legível
+            if (dadosTemperatura.length > 5) {
+                dadosTemperatura.shift();
+                dadosUmidade.shift();
+                lista.shift();
+            }
+
+        }
+        console.log(dadosTemperatura, 'Dados Temp')
+
+        // Criar novos gráficos se ainda não foram inicializados
+        if (!chartsInitialized) {
+            const ctx = document.getElementById('GraficosBarras').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: lista,
+                    datasets: [{
+                        label: 'Temperatura',
+                        data: dadosTemperatura,
+                        backgroundColor: 'red',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tempo'
+                            }
+                        }
+                    }
+                }
+            });
+
+            const ctx2 = document.getElementById('GraficosBarras2').getContext('2d');
+            myChart2 = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: lista,
+                    datasets: [{
+                        label: 'Umidade',
+                        data: dadosUmidade,
+                        backgroundColor: 'blue',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tempo'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Marcar que os gráficos foram inicializados
+            chartsInitialized = true;
+        } else {
+            // Atualizar os gráficos existentes
+            myChart.data.labels = lista;
+            myChart.data.datasets[0].data = dadosTemperatura;
+            myChart.update();
+
+            myChart2.data.labels = lista;
+            myChart2.data.datasets[0].data = dadosUmidade;
+            myChart2.update();
+        }
+    }
+</script>

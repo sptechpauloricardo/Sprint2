@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="./assets/img/logo/logo-cogumelo.png" type="img/logo">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA - MushTemp</title>
+     <link rel="stylesheet" href="./css/bob.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!--  -->
+
+    <header>
+        <div class="nav-menu-dash">
+
+            <div class="nav-menu-logo">
+                <img class="logo-menu-dash" src="../assets/img/logo/logo-cogumelo.png" alt="">
+            </div>
+
+            <div class="menu-link-dash">
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="./dashboard/dash-mush.html">
+                        <img class="icon-menu-dash" src="../assets/img/icone/icon-home.svg" alt="">
+                    </a>
+                    <p>Início</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav ativado" href="../bob.html">
+                        <img class="icon-menu-dash" src="../assets/img/icone/icon-ia.svg" alt="">
+                    </a>
+                    <p>Bob.IA</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="./dashboard/info.html">
+                        <img class="icon-menu-dash" src="../assets/img/icone/icon-info.svg" alt="">
+                    </a>
+                    <p>Info</p>
+                </div>
+
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="mailto:mushtempcompany@gmail.com">
+                        <img class="icon-menu-dash" src="../assets/img/icone/adicionar.png" alt="">
+                    </a>
+                    <p>Add Estufa</p>
+                </div>
+
+            </div>
+
+            <div class="exit-link-dash">
+                <div class="menu-link-nav">
+                    <a class="link-nav" href="../index.html">
+                        <img class="icon-menu-dash" src="../assets/img/icone/icon-exit.svg" alt="">
+                    </a>
+                    <p>Sair</p>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="father">
+
+        <section id="Sgrafico">
+     
+            <div class="boxLadoGrafico">
+    
+                <div class="ia">
+                    <h2>MushChat</h2>
+                    <div class="resposta">
+    
+                        <div id="resposta">
+    
+                            <span
+                                style="display: flex; align-items: center; flex-direction: column; gap: 50px; justify-content: center;">
+    
+                                <img src="./assets/img/logo/logo-inteira.png" style="height: 100px;" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="pergunta">
+    
+                        <div class="boxPergunta">
+                            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+    
+                            <button onclick="gerarResposta()">
+                                <img src="./assets/img/icone/enviar.png" class="enviar" alt="">
+                            </button>
+                        </div>
+    
+                    </div>
+                    <span style="color: rgb(59, 42, 42); font-size: smaller; margin-bottom: 5%;"> Use para perguntas relacionadas as estufas de cogumelo</span>
+    
+    
+    
+    
+    
+    
+                </div>
+            </div>
+    
+        </section>
+
+    </div>
+
+
+</body>
+
+</html>
+<script>
+   
+
+
+    async function gerarResposta() {
+        const pergunta = document.getElementById('pergunta').value;
+
+        const response = await fetch('bob/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+
+        document.getElementById('resposta').innerText = data.resultado;
+    }
+
+</script>
